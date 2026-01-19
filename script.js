@@ -86,21 +86,33 @@ document.addEventListener("DOMContentLoaded", () => {
   /* emoji */
   const emojis = ["🤍", "🌸", "🌼"];
   const maxEmojis = 10;
+const loveTexts = [
+  "รักเธอ",
+  "รักนะ",
+  "love you",
+  "always you",
+  "my heart",
+  "🤍 you",
+  "with you"
+];
 
   function createEmoji() {
-    if (document.querySelectorAll(".emoji").length > maxEmojis) return;
+  if (document.querySelectorAll(".emoji").length > maxEmojis) return;
 
-    const e = document.createElement("div");
-    e.className = "emoji";
+  const e = document.createElement("div");
+  e.className = "emoji";
+
+  // 60% emoji, 40% ข้อความ
+  if (Math.random() < 0.6) {
     e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    e.style.left = Math.random() * 100 + "vw";
-    e.style.animationDuration = (12000 + Math.random() * 6000) + "ms";
-
-    document.body.appendChild(e);
-    setTimeout(() => e.remove(), 18000);
+  } else {
+    e.textContent = loveTexts[Math.floor(Math.random() * loveTexts.length)];
+    e.classList.add("text-float");
   }
 
-  setInterval(createEmoji, 2000);
+  e.style.left = Math.random() * 100 + "vw";
+  e.style.animationDuration = (12000 + Math.random() * 6000) + "ms";
 
-});
-
+  document.body.appendChild(e);
+  setTimeout(() => e.remove(), 18000);
+  }

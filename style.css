@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Anuphan', sans-serif;
+}
+
+body {
+  background: #FFF6E5;
+  color: #555;
+  overflow: hidden;
+}
+
+/* grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 999;
+}
+
+.section {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.section.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+h1 {
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.enter {
+  margin-top: 30px;
+  padding: 10px 36px;
+  border: 1px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+img {
+  max-width: 80%;
+  max-height: 60%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  filter: brightness(1.05) saturate(1.08);
+  transition: opacity .4s ease, filter .4s ease, transform .4s ease;
+}
+
+.section.active img {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.caption {
+  margin-top: 18px;
+  font-size: 14px;
+  opacity: .7;
+}
+
+.controls {
+  margin-top: 24px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  margin: 0 20px;
+}
+
+.infinity {
+  font-size: 80px;
+}
+
+/* emoji */
+.emoji {
+  position: fixed;
+  bottom: -40px;
+  font-size: 18px;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: .6; }
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  img { max-width: 90%; }
+  .emoji { font-size: 16px; }
+}

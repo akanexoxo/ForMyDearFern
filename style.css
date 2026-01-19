@@ -118,3 +118,9 @@ img {
   img { max-width: 90%; }
   .emoji { font-size: 16px; }
 }
+.text-float {
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.55;
+  font-weight: 300;
+}
